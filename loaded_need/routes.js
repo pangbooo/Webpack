@@ -1,4 +1,3 @@
-import LozyLoad from './LazyLoad';
 import LazyLoad from './LazyLoad';
 export default [
     {
