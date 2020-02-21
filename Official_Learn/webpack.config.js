@@ -24,8 +24,8 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         hot: true
-    }
-    ,plugins: [
+    },
+    plugins: [
         new HtmlWebpackPlugin({
             title: '模块热替换'
         }),
