@@ -1,18 +1,25 @@
-import printMe from './print.js';
+import _ from 'lodash';
 import './style.css';
 
-function getComponent(){
-    return import(/* webpackChunkName: "loadsh" */ 'lodash').then(({default: _}) => {
-        var element = document.createElement('div');
-        element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-        return element;
+function component(){
+    var element = document.createElement('div');
+    var button = document.createElement('button');
+    var br = document.createElement('br');
 
-    }).catch(error => 'An error occured while loading the component')
+    button.innerHTML = 'Click me and look at the console!';
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.appendChild(br);
+    element.appendChild(button);
+
+    button.onclick = e => import(/* webpackChunkName: "print" */ './print.js').then(module => {
+        var print = module.default;
+        print();
+    });
+
+    return element;
+    
 }
-
-getComponent().then(component => {
-    document.body.appendChild(component);
-})
+document.body.appendChild(component());
 
 if(module.hot){ //表示 模块热替换(Hot Module Replacement) 是否启用，并给进程提供一个接口
     module.hot.accept('./print.js', function(){
