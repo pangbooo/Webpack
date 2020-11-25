@@ -5,7 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        app: './src/index.js'
+        index: './src/index.js',
+        another: './src/another-module.js'
     },
     output: {
         filename: '[name].bundle.js',
@@ -31,4 +32,9 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
 }
