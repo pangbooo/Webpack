@@ -1,21 +1,18 @@
-import _ from 'lodash';
 import printMe from './print.js';
 import './style.css';
 
-function component(){
-    var element = document.createElement('div');
-    var btn = document.createElement('button');
+function getComponent(){
+    return import(/* webpackChunkName: "loadsh" */ 'lodash').then(({default: _}) => {
+        var element = document.createElement('div');
+        element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+        return element;
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    btn.innerHTML = '点击这里，然后查看 console！';
-    btn.onclick = printMe;
-
-    element.appendChild(btn);
-    return element;
+    }).catch(error => 'An error occured while loading the component')
 }
 
-let element = component();
-document.body.appendChild(element)
+getComponent().then(component => {
+    document.body.appendChild(component);
+})
 
 if(module.hot){ //表示 模块热替换(Hot Module Replacement) 是否启用，并给进程提供一个接口
     module.hot.accept('./print.js', function(){

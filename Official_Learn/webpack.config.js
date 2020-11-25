@@ -5,8 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        index: './src/index.js',
-        another: './src/another-module.js'
+        index: './src/index.js'
     },
     output: {
         filename: '[name].bundle.js',
@@ -31,10 +30,5 @@ module.exports = {
             title: '模块热替换'
         }),
         new webpack.HotModuleReplacementPlugin()
-    ],
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        }
-    }
+    ]
 }
