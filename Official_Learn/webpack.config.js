@@ -8,7 +8,7 @@ module.exports = {
         index: './src/index.js'
     },
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: './'
     },
@@ -29,6 +29,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: '模块热替换'
         }),
-        new webpack.HotModuleReplacementPlugin()
-    ]
+
+        // fix Cannot use [chunkhash] or [contenthash] for chunk in '[name].[chunkhash].js' (use [hash] instead) 
+        // new webpack.HotModuleReplacementPlugin()
+    ],
+
 }
