@@ -30,6 +30,7 @@ module.exports = {
             title: '模块热替换'
         }),
         new webpack.HashedModuleIdsPlugin() //vendor  没发生变化时，vendor hash不发生变化（[name].[contenthash].js）
+        // new webpack.NamedModulesPlugin() // 适用于dev环境
 
         // fix Cannot use [chunkhash] or [contenthash] for chunk in '[name].[chunkhash].js' (use [hash] instead) 
         // new webpack.HotModuleReplacementPlugin()
